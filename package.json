@@ -1,5 +1,5 @@
 {
-  "name": "express-next-router",
+  "name": "express-router-js",
   "version": "0.0.1",
   "description": "express advanced routing system used adonis routing system",
   "main": "index.js",
@@ -8,7 +8,9 @@
   },
   "keywords": [
     "express",
-    "route"
+    "routing",
+    "route",
+    "route-group"
   ],
   "dependencies": {
     "encodeurl": "^1.0.2",
