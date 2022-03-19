@@ -1,0 +1,15 @@
+{
+  "name": "express-next-router",
+  "version": "0.0.1",
+  "description": "express advanced routing system used adonis routing system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "route"
+  ],
+  "author": "Hesam Mousavi",
+  "license": "MIT"
+}
