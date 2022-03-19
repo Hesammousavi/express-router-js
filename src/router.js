@@ -167,7 +167,7 @@ class Router {
     let routes = this.toRoutesJSON(this.routes)
 
     // add route helpers for route handlers
-    this.app.use(this.appendSomeRouteHelpersToRequest)
+    this.app.use(this.appendSomeRouteHelpersToRequest.bind(this))
 
     for (const route of routes) {
       this.handleRoute(route)

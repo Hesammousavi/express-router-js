@@ -75,7 +75,9 @@ class Route {
 
       // TODO -> define not modular @controller
       let pathOfModule = this.routeNamespace + '/' + action[0];
-      handler = require(pathOfModule)[action[1]]
+      const controller = require(pathOfModule);
+
+      handler = controller[action[1]];
     }
 
     return handler;
