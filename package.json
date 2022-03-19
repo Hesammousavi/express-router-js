@@ -10,6 +10,10 @@
     "express",
     "route"
   ],
+  "dependencies": {
+    "encodeurl": "^1.0.2",
+    "qs": "^6.10.3"
+  },
   "author": "Hesam Mousavi",
   "license": "MIT"
 }
