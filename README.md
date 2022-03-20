@@ -94,3 +94,32 @@ Router.group((Router) => {
 }).prefix('web').middleware((req , res , next) => {} , ...);
 ```
 
+## Naming Routes
+
+you can set names on routes to easy access them from request
+
+example:
+
+```js 
+
+Router.group((Router) => {
+
+    // localhost:3000/user
+    Router.get('/users' , (req, res) => {
+        // this create an url to redirect
+        let url = req.to_route('api.users.single' , { id : 2 });
+
+    }).as('users.list')
+
+    // localhost:3000/user/:id
+    Router.get('/user/:id' , (req, res) => {
+         // this create an url to redirect
+        let url = req.to_route('api.users');
+        
+    }).as('users.single')
+
+}).prefix('api').as('api');
+
+```
+
+
