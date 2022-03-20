@@ -18,12 +18,13 @@ class Router {
    */
   openedGroups = []
 
+  app = null;
+
   /**
    * app an instance of expressjs app
    * @param app
    */
-  constructor (app) {
-    this.app = app
+  constructor () {
   }
 
   /**
@@ -163,7 +164,9 @@ class Router {
     return group
   }
 
-  serve () {
+  serve (app) {
+    this.app = app;
+
     let routes = this.toRoutesJSON(this.routes)
 
     // add route helpers for route handlers
@@ -199,8 +202,8 @@ class Router {
     )
   }
 
-  static createRouter (app) {
-    return new Router(app)
+  static createRouter () {
+    return new Router()
   }
 
 
