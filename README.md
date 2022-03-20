@@ -32,7 +32,6 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 ```
-
 ## Define Route Group
 
 You Have Route Group in Express from now
