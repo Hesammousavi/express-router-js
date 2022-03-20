@@ -20,7 +20,7 @@ after you install the package you can require express routing system like this :
 const express = require('express')
 const app = express()
 const port = 3000
-const { Router : Route } = require('express-router-js')
+const Router = require('express-router-js')(app);
 
 Router.get('/' , (req , res , next) => {
     res.send('Hello World!');
@@ -42,7 +42,7 @@ You Have Route Group in Express from now
 const express = require('express')
 const app = express()
 const port = 3000
-const { Router : Route } = require('express-router-js')
+const Router = require('express-router-js')
 
 const AuthMiddleware = (req , res , next) => {
     // check user is login
@@ -52,24 +52,21 @@ const AdminMiddleware = = (req , res , next) => {
     // check user is admin
 }
 
-Route.group(() => {
-    // localhost:3000/articles
-    Route.get('/' , (req, res) => {}) 
+Router.group((Router) => {
 
     // localhost:3000/articles
-    Route.post('/' , (req , res) => {} )
+    Router.get('/' , (req, res) => {}) 
 
     // localhost:3000/articles/:articleId
-    Route.get('/:articleId' , (req, res ) => {})
-
-    // localhost:3000/articles/:articleId/edit
-    Route.get('/:articleId/edit' , (req, res ) => {}).middleware((req , res , next) => {} , ...)
+    Router.get('/:articleId' , (req, res ) => {})
 
    // localhost:3000/articles/:articleId
-    Route.patch('/:articleId' , (req, res ) => {})
+    Router.patch('/:articleId' , (req, res ) => {})
+
+       // localhost:3000/articles/:articleId/delete
+    Router.delete('/:articleId' , (req, res ) => {})
 
 }).prefix('articles').middleware(AuthMiddleware , AdminMiddleware);
-
 
 
 Router.serve();
@@ -77,3 +74,24 @@ Router.serve();
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+```
+
+
+## Route Group in N-Level
+
+you can define diffrent route groups inside toghter
+
+```js
+Router.group((Router) => {
+    
+    Router.group((Router) => {
+        Router.get('/' , (req , res , next) => {})
+    }).prefix('videos');
+
+    Router.group((Router) => {
+        Router.get('/' , (req , res , next) => {})
+    }).prefix('articles');
+
+}).prefix('web').middleware((req , res , next) => {} , ...);
+```
+

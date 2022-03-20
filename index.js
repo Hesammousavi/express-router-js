@@ -1,5 +1,3 @@
 const Router = require('./src/router');
 
-module.exports = {
-    Router
-}
+module.exports = (app) => Router.createRouter(app);
