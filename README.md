@@ -20,13 +20,13 @@ after you install the package you can require express routing system like this :
 const express = require('express')
 const app = express()
 const port = 3000
-const Router = require('express-router-js')(app);
+const Router = require('express-router-js')();
 
 Router.get('/' , (req , res , next) => {
     res.send('Hello World!');
 });
 
-Router.serve();
+Router.serve(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
@@ -42,7 +42,7 @@ You Have Route Group in Express from now
 const express = require('express')
 const app = express()
 const port = 3000
-const Router = require('express-router-js')
+const Router = require('express-router-js')()
 
 const AuthMiddleware = (req , res , next) => {
     // check user is login
@@ -69,7 +69,7 @@ Router.group((Router) => {
 }).prefix('articles').middleware(AuthMiddleware , AdminMiddleware);
 
 
-Router.serve();
+Router.serve(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
