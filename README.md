@@ -75,6 +75,15 @@ app.listen(port, () => {
 })
 ```
 
+## Add Middlewares to Route/Route-Group
+
+you can easily add your middlewares like this example :
+```js
+Router.group((Router) => {
+        Router.get('/' , (req, res) => {}).middleware(function(req , res , next) {})
+}).middleware(function(req, res , next) {} , ...)
+// Route group middleware will execute in All Route inside
+```
 
 ## Route Group in N-Level
 
@@ -115,7 +124,7 @@ Router.group((Router) => {
     Router.get('/user/:id' , (req, res) => {
          // this create an url to redirect
         let url = req.to_route('api.users');
-        
+
     }).as('users.single')
 
 }).prefix('api').as('api');
