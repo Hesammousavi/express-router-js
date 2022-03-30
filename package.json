@@ -1,6 +1,6 @@
 {
   "name": "express-router-js",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "express advanced routing system used adonis routing system",
   "main": "index.js",
   "repository": {
