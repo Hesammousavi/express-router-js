@@ -65,7 +65,7 @@ Router.group((Router) => {
        // localhost:3000/articles/:articleId/delete
     Router.delete('/:articleId' , (req, res ) => {})
 
-}).prefix('articles').middleware(AuthMiddleware , AdminMiddleware);
+}).prefix('articles').middleware([AuthMiddleware , AdminMiddleware]);
 
 
 Router.serve(app);
@@ -81,7 +81,7 @@ you can easily add your middlewares like this example :
 ```js
 Router.group((Router) => {
         Router.get('/' , (req, res) => {}).middleware(function(req , res , next) {})
-}).middleware(function(req, res , next) {} , ...)
+}).middleware([function(req, res , next) {} , ...])
 // Route group middleware will execute in All Route inside
 ```
 
@@ -100,7 +100,7 @@ Router.group((Router) => {
         Router.get('/' , (req , res , next) => {})
     }).prefix('articles');
 
-}).prefix('web').middleware((req , res , next) => {} , ...);
+}).prefix('web').middleware([(req , res , next) => {} , ...]);
 ```
 
 ## Naming Routes
