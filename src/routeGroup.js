@@ -6,6 +6,12 @@ class RouteGroup {
      * Array of middleware registered on the group
      */
     this.groupMiddleware = []
+
+    /**
+     * Array of middleware not must registered on the group
+     */
+     this.withoutGroupMiddleware = []
+
     /**
      * We register the group middleware only once with the route
      * and then mutate the internal stack. This ensures that
@@ -131,6 +137,16 @@ class RouteGroup {
     }
     return this
   }
+
+  withoutMiddleware(middleware) {
+    middleware = Array.isArray(middleware) ? middleware : [middleware]
+    middleware.forEach((one) => this.withoutGroupMiddleware.push(one))
+
+    this.routes.forEach((route) => this.invoke(route, 'withoutMiddleware', [this.withoutGroupMiddleware]))
+
+    return this
+  }
+
 
   /**
    * Define namespace for all the routes inside the group.

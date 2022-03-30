@@ -31,6 +31,11 @@ class Route {
      * An array of middleware. Added using `middleware` function
      */
     this.routeMiddleware = []
+
+    /**
+     * An array of middleware. Added dont using `middleware` function
+     */
+    this.routeWithoutMiddleware = []
   }
 
   /**
@@ -81,6 +86,12 @@ class Route {
     }
 
     return handler;
+  }
+
+  getMiddlewares() {
+    let withoutMiddlewares= this.routeWithoutMiddleware.flat()
+    let middlewares = this.routeMiddleware.flat().filter(middleware => ! withoutMiddlewares.includes(middleware))
+    return middlewares;
   }
 
   /**
@@ -144,6 +155,13 @@ class Route {
     } else {
       this.routeMiddleware.push(middleware)
     }
+
+    return this
+  }
+
+  withoutMiddleware(middleware) {
+    middleware = Array.isArray(middleware) ? middleware : [middleware]
+    this.routeWithoutMiddleware.push(middleware)
     return this
   }
 
@@ -184,7 +202,7 @@ class Route {
       name: this.name,
       handler: this.getHandler(),
       method: this.method,
-      middleware: this.routeMiddleware.flat(),
+      middleware: this.getMiddlewares(),
     }
   }
 }
